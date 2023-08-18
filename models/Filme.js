@@ -8,7 +8,7 @@ export const Filme = sequelize.define('filme', {
     primaryKey: true
   },
   // Model attributes are defined here
-titulo: {
+  titulo: {
     type: DataTypes.STRING(60),
     allowNull: false
   },
@@ -21,11 +21,11 @@ titulo: {
     type: DataTypes.INTEGER(3),
     allowNull: false
   },
-  preco:{
+  preco: {
     type: DataTypes.DECIMAL(9, 2),
     allowNull: false
   },
-  datalan:{
+  datalan: {
     type: DataTypes.DATE,
     allowNull: false
   }

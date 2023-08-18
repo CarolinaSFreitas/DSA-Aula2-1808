@@ -9,22 +9,22 @@ const port = 3000
 app.use(routes)
 
 app.get('/', (req, res) => {
-    res.send('Sistema de Cadastro de Filmes')
+  res.send('Sistema de Cadastro de Filmes')
 })
 
 async function conecta_db() {
-    try {
-        await sequelize.authenticate();
-        console.log('Conexão bem sucedida.');
-        await Filme.sync()              //vai ciar a tabela no banco(se nao existir já)
-        console.log("Tabela de Filmes: Ok!")
-    } catch (error) {
-        console.error('Impossível conectar ao banco de dados:', error);
-    }
+  try {
+    await sequelize.authenticate();
+    console.log('Conexão bem sucedida.');
+    await Filme.sync()              //vai ciar a tabela no banco(se nao existir já)
+    console.log("Tabela de Filmes: Ok!")
+  } catch (error) {
+    console.error('Impossível conectar ao banco de dados:', error);
+  }
 }
 conecta_db()
 
 app.listen(port, () => {
-    console.log(`API de Filmes Rodando na Porta ${port}`)
+  console.log(`API de Filmes Rodando na Porta ${port}`)
 })
 
