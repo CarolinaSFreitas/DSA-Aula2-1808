@@ -1,9 +1,12 @@
 import express from 'express'
 import { sequelize } from './database/conecta.js'
 import { Filme } from './models/Filme.js'
+import routes from './routes.js'
 
 const app = express()
 const port = 3000
+
+app.use(routes)
 
 app.get('/', (req, res) => {
     res.send('Sistema de Cadastro de Filmes')
