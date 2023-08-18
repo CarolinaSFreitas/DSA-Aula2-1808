@@ -10,15 +10,37 @@ export async function filmeIndex(req, res) {
 }
 
 export async function filmeCreate(req, res) {
-    const { titulo, genero, duracao, preco, datalan } = req.body()
+    const { titulo, genero, duracao, preco, datalan } = req.body
 
     if (!titulo || !genero || !duracao || !preco || !datalan) {
         res.status(400).json("Erro... Informe todos os atributos.")
         return
     }
 
+    try {
+        const filme = await Filme.create({
+            titulo, genero, duracao, preco, datalan
+        })
+        res.status(201).json(filme)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
 
+export async function filmeDelete(req, res) {
+    const { titulo, genero, duracao, preco, datalan } = req.body
 
+    if (!titulo || !genero || !duracao || !preco || !datalan) {
+        res.status(400).json("Erro... Informe todos os atributos.")
+        return
+    }
 
-    
+    try {
+        const filme = await Filme.delete({
+            titulo, genero, duracao, preco, datalan
+        })
+        res.status(201).json(filme)
+    } catch (error) {
+        res.status(400).send(error)
+    }
 }
