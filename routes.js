@@ -1,9 +1,10 @@
 import { Router } from "express"
-import { filmeCreate, filmeIndex } from "./controllers/filmeController.js"
+import { filmeCreate, filmeDelete, filmeIndex, filmeUpdate } from "./controllers/filmeController.js"
 
 const router = Router()
 
 router.get("/filmes", filmeIndex)
       .post("/filmes", filmeCreate)
-      .delete("/filmes", filmeDelete)
+      .put("/filmes/:id", filmeUpdate)
+      .delete("/filmes/:id", filmeDelete)
 export default router

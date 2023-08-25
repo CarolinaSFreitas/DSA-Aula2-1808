@@ -9,6 +9,8 @@ export async function filmeIndex(req, res) {
     }
 }
 
+// função de create
+
 export async function filmeCreate(req, res) {
     const { titulo, genero, duracao, preco, datalan } = req.body
 
@@ -27,7 +29,11 @@ export async function filmeCreate(req, res) {
     }
 }
 
-export async function filmeDelete(req, res) {
+// função de update/alterar
+
+export async function filmeUpdate(req, res) {
+    const { id } = req.params
+
     const { titulo, genero, duracao, preco, datalan } = req.body
 
     if (!titulo || !genero || !duracao || !preco || !datalan) {
@@ -36,11 +42,29 @@ export async function filmeDelete(req, res) {
     }
 
     try {
-        const filme = await Filme.delete({
+        const filme = await Filme.update({
             titulo, genero, duracao, preco, datalan
+        }, {
+            where: { id }
         })
-        res.status(201).json(filme)
+        res.status(200).json(filme)
     } catch (error) {
         res.status(400).send(error)
     }
 }
+
+//função de deletar
+
+export async function filmeDelete(req, res) {
+    const { id } = req.params
+
+    try {
+        await Filme.destroy({
+            where: { id }
+        })
+        res.status(200).json({ msg: "Ok! Removido com sucesso :)" })
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
